@@ -18,21 +18,37 @@
 
 	<script type="text/javascript">
 		$.getJSON('favs.json', function (data) {
-			var json, shtml;
+			var user, created_at, id, text, source, media, shtml;
 			
 			shtml = '';
 			
 			$.each(data, function() {
-				json = this.user;
+				user = this.user;
+				created_at = this.created_at;
+				id = this.id;
+				text = this.text;
+				source = this.source;
+				media = this.entities.media;
+				
+				shtml += "<div class=tweet id=" + id + ">";
+				shtml += "<img class=profile_image src=" + user.profile_image_url + " alt=profile_image>";
+				shtml += "<div class=tweet>" + text;
+				if (media != null) {
+					shtml += "<img class=media_image src=" + media[0].media_url + " alt=media_image><br>";
+				}
+				shtml += "</div>";
+				shtml += "<div class=source>" + this.source + "</div>";
+				
+				
 				
 				// Create the popup button that will popup the user info
-				shtml += "<a href='#" + json.id + "' data-rel='popup'>" + json.name +"</a><br>";
-				shtml += "<div data-role='popup' id='" + json.id + "'>";
-				shtml += "<div class='name'>name: " + json.name + "<div>";
-				shtml += "<div class='screenname'>screen name: " + json.screen_name + "</div>";
-				shtml += "<div class='location'>location: " + json.location + "</div>";
-				shtml += "<div class='description'>description: " + json.description + "</div>";
-				shtml += "<div class='link'>link: <a href=" + json.url + ">link</a></div></div>";
+				shtml += "<a href='#" + user.id + "' data-rel='popup'>" + user.name +"</a><br>";
+				shtml += "<div data-role='popup' id='" + user.id + "'>";
+				shtml += "<div class='name'>name: " + user.name + "<div>";
+				shtml += "<div class='screenname'>screen name: " + user.screen_name + "</div>";
+				shtml += "<div class='location'>location: " + user.location + "</div>";
+				shtml += "<div class='description'>description: " + user.description + "</div>";
+				shtml += "<div class='link'>link: <a href=" + user.url + ">link</a></div></div></div>";
 				$('#Main-Container').append(shtml);
 				
 				shtml = '';
