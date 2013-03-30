@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="js/jquery-1.9.0.min.js" type="text/javascript"></script>
+    <script src="js/jquery.mobile-1.3.0-rc.1.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/jqm-demos.css">
+    <link rel="stylesheet" href="css/jquery.mobile-1.3.0-rc.1.css">
+</head>
+<body>
+
+	<div id="Main-Container">
+	
+	</div>
+
+</body>
+
+	<script type="text/javascript">
+		$.getJSON('favs.json', function (data) {
+			var json, shtml;
+			
+			shtml = '';
+			
+			$.each(data, function() {
+				json = this.user;
+				
+				// Create the popup button that will popup the user info
+				shtml += "<a href='#" + json.id + "' data-rel='popup'>" + json.name +"</a><br>";
+				shtml += "<div data-role='popup' id='" + json.id + "'>";
+				shtml += "<div class='name'>name: " + json.name + "<div>";
+				shtml += "<div class='screenname'>screen name: " + json.screen_name + "</div>";
+				shtml += "<div class='location'>location: " + json.location + "</div>";
+				shtml += "<div class='description'>description: " + json.description + "</div>";
+				shtml += "<div class='link'>link: <a href=" + json.url + ">link</a></div></div>";
+				$('#Main-Container').append(shtml);
+				
+				shtml = '';
+				
+				
+			})
+
+		})
+	</script>
+
+</html>
