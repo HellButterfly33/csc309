@@ -88,7 +88,7 @@
 		shtml += '<img class=profile_pic_portrait src="' + user.profile_image_url + '" alt="picture of ' + user.screen_name + '"></img>';
 		
 		// Create user info link
-		shtml += '<a href="#user_info_' + user.id + '">' + user.screen_name + '</a><br>';
+		shtml += '<a href="#user_info_' + user.id + 'target="_blank">' + user.screen_name + '</a><br>';
 		
 		// Create compressed tweet
 		shtml += "<a href='#" + data.id + "' data-rel='popup'><div class='text'>" + data.text +"</div></a><br>";
@@ -130,7 +130,7 @@
 		media = data.entities.media;
 		
 		shtml += "<div data-role='popup' id='" + data.id + "'>";
-		shtml += data.text + '<br>';
+		shtml += add_link(data.text) + '<br>';
 		
 		// check if there are any media (photos) available
 		if (media != null) {
@@ -139,6 +139,55 @@
 		}
 		shtml += '<div class=source>source: ' + data.source + '</div></div>';
 		return shtml;
+	}
+	
+	/*
+	 * Take in a string of data. Replace any http: it finds with the
+	 * anchor tags to the link.
+	*/
+	function add_link(data) {
+		// find the start of the link, starts with http:
+		var found = data.indexOf("http:", 0);
+		var theLink = "";
+		
+		while (found != -1) {
+			// we need to find the end of the link, it will end with
+			// a space(" "), or a new line character("\n")
+			var spaceNext = data.indexOf(" ", found);
+			var endNext = data.indexOf("\n", found);
+			var end = 0;
+			// if the new line character was found, and it appears
+			// before the next space character, we will use the
+			// location of the new line character to mark the end of the
+			// link
+			if ((spaceNext > endNext) && (endNext != -1)) {
+				end = endNext;
+			}
+			// else, we know that the space appears before the new line
+			// character, and we'll use that
+			else {
+				end = spaceNext;
+			}
+			
+			// if the link was at the end of the tweet, ie no space or
+			// no new line characters follow after, we have to continue
+			// to the end
+			if (end == -1) {
+				end = data.length;
+			}
+			// the link
+			theLink = data.substring(found, end);
+			data = data.replace(theLink, "<a href=" + theLink + ' target="_blank">' + theLink + '</a>');
+			// We must add 28 characters, because we did data.replace
+			// and we replaced the link with an anchor tag
+			// We have to skip over the anchor tag, so we add in 
+			// characters to skip. We replaced theLink with 28
+			// characters, and 2 copies of theLink, which means we added
+			// 28 characters + 1 copy of theLink. So we have to skip
+			// that many characters.
+			found = data.indexOf("http:", end + 28 + theLink.length);
+		}
+		return data;
 	}
 
 </script>
