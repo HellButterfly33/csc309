@@ -10,19 +10,46 @@
 </head>
 <body>
 
-	<div id="Main-Container">
-	
-	</div>
+<div data-role="page">
+
+    <div data-role="header" data-theme="f">
+        <h1>Add Name Here</h1>
+    </div><!-- /header -->
+    
+    <div data-role="content">
+    
+        <div id="items">
+        </div><!--/demo-html -->
+    
+    </div><!-- /content -->
+    <div class="jqm-footer">
+        <p class="jqm-version"></p>
+        <p>&copy; 2010, 2013 jQuery Foundation and other contributors:</p>
+    </div><!-- /jqm-footer -->
+    
+    <!-- place in css file -->
+    <style>
+		.text {
+			white-space:nowrap;
+			width:40em;
+			overflow:hidden;
+			text-overflow:ellipsis;
+		}
+    </style>
+    
+</div><!-- /page -->   
 
 </body>
 
-	<script type="text/javascript">
-		$.getJSON('favs.json', function (data) {
-			var user, created_at, id, text, source, media, shtml;
+<script type="text/javascript">
+    $.getJSON('favs.json', function (data) {
+        //first level
+        var user, created_at, id, text, source, media, shtml;
 			
-			shtml = '';
-			
-			$.each(data, function() {
+		shtml = '';
+        
+        
+        $.each(data, function() {
 				user = this.user;
 				created_at = this.created_at;
 				id = this.id;
@@ -30,33 +57,67 @@
 				source = this.source;
 				media = this.entities.media;
 				
-				shtml += "<div class=tweet id=" + id + ">";
+				shtml += "<div class=tweet>";
 				shtml += "<img class=profile_image src=" + user.profile_image_url + " alt=profile_image>";
-				shtml += "<div class=tweet>" + text;
-				if (media != null) {
-					shtml += "<img class=media_image src=" + media[0].media_url + " alt=media_image><br>";
-				}
-				shtml += "</div>";
-				shtml += "<div class=source>" + this.source + "</div>";
+				shtml += "<div class='text'>" + text + "</div>";
+				
+				//Create the more and user popup buttons
+				shtml += create_buttons(id, user);
+				
+				//Create the more popup
+				shtml += create_more_popup(id, text, media, source);		
+				
+				//Create user info popup
+				shtml += create_user_info_popup(user);
 				
 				
-				
-				// Create the popup button that will popup the user info
-				shtml += "<a href='#" + user.id + "' data-rel='popup'>" + user.name +"</a><br>";
-				shtml += "<div data-role='popup' id='" + user.id + "'>";
-				shtml += "<div class='name'>name: " + user.name + "<div>";
-				shtml += "<div class='screenname'>screen name: " + user.screen_name + "</div>";
-				shtml += "<div class='location'>location: " + user.location + "</div>";
-				shtml += "<div class='description'>description: " + user.description + "</div>";
-				shtml += "<div class='link'>link: <a href=" + user.url + ">link</a></div></div></div>";
-				$('#Main-Container').append(shtml);
+				$('#items').append(shtml);
 				
 				shtml = '';
-				
-				
-			})
-
 		})
-	</script>
+
+    });
+    
+    function create_user_info_popup(user) {
+		var shtml = '';
+		
+		shtml += "<div data-role='popup' id='" + user.id + "'>";
+		shtml += "<div class='name'>name: " + user.name + "<div>";
+		shtml += "<div class='location'>location: " + user.location + "</div>";
+		shtml += "<div class='description'>description: " + user.description + "</div>";
+		shtml += "link: <a class='link' target='_blank' href=" + user.url + ">link</a></div></div>";
+		
+		return shtml;
+	}
+    
+    //Return an html code that create the more popup
+    function create_more_popup(id, text, media, source) {
+		var shtml = '';
+		
+		shtml += "<div data-role='popup' id='" + id + "'>";
+		shtml += text + "<br>";
+		
+		if (media != null) {
+			shtml += "<img class=media_image src=" + media[0].media_url + " alt=media_image><br>";
+		}
+		shtml += "<div class=source>" + source + "</div></div>";
+		
+		return shtml;
+	}
+    
+    //Return an html code that creates a more and user popup buttons
+    function create_buttons(id, user) {
+		var shtml = '';
+		
+		shtml += "<fieldset class='ui-grid-a'><div class='ui-block-a'>";
+		shtml += "<a href='#" + id + "' data-rel='popup' data-role='button'>More</a><br></div>";
+		shtml += "<div class='ui-block-b'>";
+		shtml += "<a href='#" + user.id + "' data-rel='popup' data-role='button'>" + user.name +"</a><br>";
+		shtml += "</div></fieldset>";
+		
+		return shtml
+	}
+
+</script>
 
 </html>
