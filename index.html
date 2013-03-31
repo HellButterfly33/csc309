@@ -1,121 +1,144 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
 <head>
     <title></title>
-    <script src="js/jquery-1.9.0.min.js" type="text/javascript"></script>
-    <script src="js/jquery.mobile-1.3.0-rc.1.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="css/custom.css">
-    <link rel="stylesheet" href="css/jqm-demos.css">
-    <link rel="stylesheet" href="css/jquery.mobile-1.3.0-rc.1.css">
-</head>
-<body>
-
-<div data-role="page">
-
-    <div data-role="header" data-theme="f">
-        <h1>Add Name Here</h1>
-    </div><!-- /header -->
-    
-    <div data-role="content">
-    
-        <div id="items">
-        </div><!--/demo-html -->
-    
-    </div><!-- /content -->
-    <div class="jqm-footer">
-        <p class="jqm-version"></p>
-        <p>&copy; 2010, 2013 jQuery Foundation and other contributors:</p>
-    </div><!-- /jqm-footer -->
+    <script src='js/jquery-1.9.0.min.js' type='text/javascript'></script>
+    <script src='js/jquery.mobile-1.3.0-rc.1.js' type='text/javascript'></script>
+    <link rel='stylesheet' href='css/custom.css'>
+    <link rel='stylesheet' href='css/jqm-demos.css'>
+    <link rel='stylesheet' href='css/jquery.mobile-1.3.0-rc.1.css'>
     
     <!-- place in css file -->
     <style>
-		.text {
-			white-space:nowrap;
-			width:40em;
-			overflow:hidden;
-			text-overflow:ellipsis;
+	@media all and (max-width: 50em) 
+	{
+		.my-breakpoint .ui-block-a {
+			visibility: hidden;
 		}
+		.my-breakpoint .ui-block-b {
+			width: 100%;
+		}
+	}
+	@media all and (min-width: 50em) 
+	{
+		.my-breakpoint .ui-block-a {
+			width: 100%;
+		}
+		.my-breakpoint .ui-block-b {
+			visibility: hidden;
+		}
+	}
+	
+	.text {
+		white-space:nowrap;
+		width:40em;
+		overflow:hidden;
+		text-overflow:ellipsis;
+	}
     </style>
     
+</head>
+<body>
+
+<div data-role='page' id='Main_Container'>
+
+    <div data-role='header' data-theme='f'>
+        <h1>Add Name Here</h1>
+    </div><!-- /header -->
+    
+    <div data-role='content'>
+    
+		<fieldset class='ui-grid-a my-breakpoint'>
+			<div id='portrait' class='ui-block-a'></div><!--portrait view -->
+			<div id='landscape' class='ui-block-b'>Block B</div><!--landscape view -->
+		</fieldset>
+    
+    </div><!-- /content -->
+    <div class='jqm-footer'>
+        <p class='jqm-version'></p>
+        <p>&copy; 2010, 2013 jQuery Foundation and other contributors:</p>
+    </div><!-- /jqm-footer -->
 </div><!-- /page -->   
 
 </body>
 
-<script type="text/javascript">
+<script type='text/javascript'>
+	
     $.getJSON('favs.json', function (data) {
         //first level
-        var user, created_at, id, text, source, media, shtml;
-			
-		shtml = '';
+		
+		var shtml = '';
         
         
         $.each(data, function() {
-				user = this.user;
-				created_at = this.created_at;
-				id = this.id;
-				text = this.text;
-				source = this.source;
-				media = this.entities.media;
-				
-				shtml += "<div class=tweet>";
-				shtml += "<img class=profile_image src=" + user.profile_image_url + " alt=profile_image>";
-				shtml += "<div class='text'>" + text + "</div>";
-				
-				//Create the more and user popup buttons
-				shtml += create_buttons(id, user);
-				
-				//Create the more popup
-				shtml += create_more_popup(id, text, media, source);		
-				
-				//Create user info popup
-				shtml += create_user_info_popup(user);
-				
-				
-				$('#items').append(shtml);
-				
-				shtml = '';
+			
+			shtml += create_portrait_view(this);
+			$('#portrait').append(shtml);
+			shtml = '';
 		})
-
     });
     
-    function create_user_info_popup(user) {
-		var shtml = '';
+    function create_portrait_view(data) {
+		var shtml, user;
 		
-		shtml += "<div data-role='popup' id='" + user.id + "'>";
-		shtml += "<div class='name'>name: " + user.name + "<div>";
-		shtml += "<div class='location'>location: " + user.location + "</div>";
-		shtml += "<div class='description'>description: " + user.description + "</div>";
-		shtml += "link: <a class='link' target='_blank' href=" + user.url + ">link</a></div></div>";
+		user = data.user;
+		shtml = '';
+		
+		// Create profile picture
+		shtml += '<img class=profile_pic_portrait src="' + user.profile_image_url + '" alt="picture of ' + user.screen_name + '"></img>';
+		
+		// Create user info link
+		shtml += '<a href="#user_info_' + user.id + '">' + user.screen_name + '</a><br>';
+		
+		// Create compressed tweet
+		shtml += "<a href='#" + data.id + "' data-rel='popup'><div class='text'>" + data.text +"</div></a><br>";
+		
+		// Create tweet info popup
+		shtml += create_tweet_popup(data);
+		
+		// Create user info page
+		create_user_info_page(user);
+		
+		
 		
 		return shtml;
 	}
-    
-    //Return an html code that create the more popup
-    function create_more_popup(id, text, media, source) {
+	
+	function create_user_info_page(user) {
 		var shtml = '';
 		
-		shtml += "<div data-role='popup' id='" + id + "'>";
-		shtml += text + "<br>";
+		// Start the user page;
+		shtml += '<div data-role="page" id="user_info_' + user.id + '">';
 		
+		shtml += '<img class=profile_pic src="' + user.profile_image_url + '" alt="picture of ' + user.screen_name + '"></img>';
+		shtml += '<div class="screen_name">' + user.screen_name + '</div>';
+		
+		shtml += '<div class="name">name: ' + user.name + '</div>';
+		shtml += '<div class="location">location: ' + user.location + '</div>';
+		shtml += '<div class-"description">description: ' + user.description + '</div>';
+		shtml += '<a class="link" target="_blank" href=' + user.link + '>link</a>';
+		shtml += '<a href="#Main_Container" data-role="button">Go to Main Page</a></div>';
+		
+		$(document.body).append(shtml);
+	}
+	
+	function create_tweet_popup(data) {
+		var shtml, media;
+		
+		// initialize the html and the media object
+		shtml = '';
+		media = data.entities.media;
+		
+		shtml += "<div data-role='popup' id='" + data.id + "'>";
+		shtml += data.text + '<br>';
+		
+		// check if there are any media (photos) available
 		if (media != null) {
-			shtml += "<img class=media_image src=" + media[0].media_url + " alt=media_image><br>";
+			// add the images if they are available
+			shtml += '<img class=media_image src=' + media[0].media_url + ' alt=media_image><br>';
 		}
-		shtml += "<div class=source>" + source + "</div></div>";
-		
+		shtml += '<div class=source>source: ' + data.source + '</div></div>';
 		return shtml;
-	}
-    
-    //Return an html code that creates a more and user popup buttons
-    function create_buttons(id, user) {
-		var shtml = '';
-		
-		shtml += "<fieldset class='ui-grid-a'><div class='ui-block-a'>";
-		shtml += "<a href='#" + id + "' data-rel='popup' data-role='button'>More</a><br></div>";
-		shtml += "<div class='ui-block-b'>";
-		shtml += "<a href='#" + user.id + "' data-rel='popup' data-role='button'>" + user.name +"</a><br>";
-		shtml += "</div></fieldset>";
-		
-		return shtml
 	}
 
 </script>
