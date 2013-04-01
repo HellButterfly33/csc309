@@ -1,4 +1,3 @@
-
 $.getJSON('favs.json', function (data) {
 	var shtml;
         
@@ -127,7 +126,7 @@ $.getJSON('favs.json', function (data) {
 			// add the images if they are available
 			shtml += '<img class=media_image src=' + media[0].media_url + ' alt=media_image><br>';
 		}
-		shtml += '<div class=source>source: ' + data.source + '</div></div>';
+		shtml += '<div class=source>source: ' + data.source.replace("<a", '<a target="_blank"') + '</div></div>';
 		return shtml;
 	}
 	
