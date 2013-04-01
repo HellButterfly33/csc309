@@ -36,7 +36,7 @@ $.getJSON('favs.json', function (data) {
 		
 		shtml = '<div class="tweet_info" id="tweet_info_' + data.id + '">';
 		shtml += '<h class="name">' + data.user.screen_name + '</h>';
-		shtml += '<p class="tweet">' + data.text + '</p>';
+		shtml += '<p class="tweet">' + add_link(data.text) + '</p>';
 			
 		if (media != null) {
 			// add the images if they are available
@@ -63,7 +63,7 @@ $.getJSON('favs.json', function (data) {
 		shtml = '<li class="list_item" id="' + data.id + '">';
 		shtml += '<img class=profile_pic_landscape src="' + user.profile_image_url + '" alt="picture of ' + user.screen_name + '"></img>';
 		shtml += '<div class="name_landscape">' + user.screen_name + '</div>';
-		shtml += '<div class="text">' + data.text + '</div></li>';
+		shtml += '<div class="text">' + add_link(data.text) + '</div></li>';
 		
 		$('#tweet-list').append(shtml);
 	}
@@ -129,4 +129,52 @@ $.getJSON('favs.json', function (data) {
 		}
 		shtml += '<div class=source>source: ' + data.source + '</div></div>';
 		return shtml;
+	}
+	
+	/*
+	* Take in a string of data. Replace any http: it finds with the
+	* anchor tags to the link.
+	*/
+	function add_link(data) {
+		// find the start of the link, starts with http:
+		var found = data.indexOf("http:", 0);
+		var theLink = "";
+		
+		while (found != -1) {
+			
+			// we need to find the end of the link, it will end with
+			// a space(" "), or a new line character("\n")
+			var spaceNext = data.indexOf(" ", found);
+			var endNext = data.indexOf("\n", found);
+			var end = 0;
+			// if the new line character was found, and it appears
+			// before the next space character, we will use the
+			// location of the new line character to mark the end of the
+			// link
+			if ((spaceNext > endNext) && (endNext != -1)) {
+				end = endNext;
+			}
+			// else, we know that the space appears before the new line
+			// character, and we'll use that
+			else {
+				end = spaceNext;
+				}
+			// if the link was at the end of the tweet, ie no space or
+			// no new line characters follow after, we have to continue
+			// to the end
+			if (end == -1) {
+				end = data.length;
+				}
+				// the link
+				theLink = data.substring(found, end);
+				data = data.replace(theLink, "<a href=" + theLink + ' target="_blank">' + theLink + '</a>');
+				// We must add 28 characters, because we did data.replace
+				// and we replaced the link with an anchor tag
+				// We have to skip over the anchor tag, so we add in
+				// characters to skip. We replaced theLink with 28
+				// characters, and 2 copies of theLink, which means we added
+				// that many characters.
+				found = data.indexOf("http:", end + 28 + theLink.length);
+			}
+		return data;
 	}
