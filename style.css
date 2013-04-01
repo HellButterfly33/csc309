@@ -1,0 +1,30 @@
+@media all and (max-width: 50em) 
+	{
+		.my-breakpoint .ui-block-a {
+			width: 100%;
+		}
+		.my-breakpoint .ui-block-b {
+			visibility: hidden;
+		}
+	}
+	@media all and (min-width: 50em) 
+	{
+		.my-breakpoint .ui-block-a {
+			visibility: hidden;
+		}
+		.my-breakpoint .ui-block-b {
+			width: 100%;
+		}
+	}
+	
+	.text {
+		white-space:nowrap;
+		width:40em;
+		overflow:hidden;
+		text-overflow:ellipsis;
+	}
+	
+	.list_item
+	{
+		cursor:pointer;
+	}
