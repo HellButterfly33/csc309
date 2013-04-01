@@ -120,7 +120,7 @@ $.getJSON('favs.json', function (data) {
 		media = data.entities.media;
 		
 		shtml += "<div data-role='popup' id='popup_" + data.id + "'>";
-		shtml += data.text + '<br>';
+		shtml += add_link(data.text) + '<br>';
 		
 		// check if there are any media (photos) available
 		if (media != null) {
