@@ -156,18 +156,24 @@ $.getJSON('favs.json', function (data) {
 		// Start the user page;
 		shtml += '<div data-role="page" id="user_info_' + user.id + '">';
 		
+		// show the picture, and screen name
 		shtml += '<div class="user_page"><img class=profile_pic src="' + user.profile_image_url + '" alt="picture of ' + user.screen_name + '"></img>';
 		shtml += '<div class="screen_name"><b>Screen Name:</b> ' + user.screen_name + '</div>';
 		
+		// show the user's real name, location, description, and a link to the user's url
 		shtml += '<div class="name"><b>Name:</b> ' + user.name + '</div>';
 		shtml += '<div class="location"><b>Location:</b> ' + user.location + '</div>';
 		shtml += '<div class-"description"><b>Description:</b> ' + user.description + '</div>';
+		// open the user's url in a new window
 		shtml += '<a class="link" target="_blank" href=' + user.url + '><b>Link</b></a>';
 		shtml += '<a href="#Main_Container" data-role="button">Go to Main Page</a></div></div>';
 		
+		// append to the page
 		$(document.body).append(shtml);
 	}
 	
+	/* Create a tweet info block for each tweet.
+	*/
 	function create_tweet_popup(data) {
 		var shtml, media;
 		
