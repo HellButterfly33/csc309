@@ -18,10 +18,15 @@ $.getJSON('favs.json', function (data) {
 		create_swipe_events();
     });
     
+    /* Create a swipe delete event. If the user swipes a tweet, they have the
+    * option to delete the tweet.
+    */
     function create_swipe_delete_event() {
 		$('.list_item').bind('swipe', function() {
+			// Ask a confirmation before deleting.
 			var response = window.confirm("Do you want to remove this from the list?");
 			if (response) {
+				// if yes, delete
 				var id = this.id;
 				$('.user_block#' + this.id).remove();
 				$('#tweet_info_' + this.id).remove();
@@ -29,9 +34,11 @@ $.getJSON('favs.json', function (data) {
 			}
 		});
 		$('.user_block').bind('swipe', function() {
+			// Ask a confirmation before deleting.
 			var response = window.confirm("Do you want to remove this from the list?");
 			if (response) {
 				var id = this.id;
+				// if yes, delete
 				$('.user_block#' + this.id).remove();
 				$('#tweet_info_' + this.id).remove();
 				$('.list_item#' + this.id).remove();
@@ -39,7 +46,8 @@ $.getJSON('favs.json', function (data) {
 		});
 	}
 	
-	// swipe events
+	/* Create the swipe event for hiding tweet info box
+	*/
     function create_swipe_events() {		
 		// if they swipe the user info page to the left, it will close it
 		$('.tweet_info').bind("swipeleft", function() {
@@ -47,6 +55,8 @@ $.getJSON('favs.json', function (data) {
 		});
 	}
     
+    /* Create tab event. If user taps on a tweet, open the tweet info box.
+    */
     function create_tap_events() {
 		$('.list_item').bind('tap', function() {
 			
