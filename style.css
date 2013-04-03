@@ -59,6 +59,10 @@
 		
 	}
 	
+	.name_landscape{
+		padding-bottom: 10px;
+	}
+	
 	.header{
 		width: 100%;
 		background: green;
@@ -85,11 +89,23 @@
 		padding: 10px;
 	}
 	
-	.mybreakpoint .ui-grid-a{
-		float: left;
+	#tweet-list{
+		list-style-type: none;
 	}
-	.ui-block-c{
+	
+	.list_item{
+		border-style: solid;
+		border-width: 1px;
+		padding: 10px;
+	}
+	
+	.profile_pic_landscape{
 		float: left;
 	}
 	
-	
+	.tweet_info{
+		padding: 10px;
+		margin-top: 1em;
+		border-style: solid;
+		border-width: 1px;
+	}

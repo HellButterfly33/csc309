@@ -34,7 +34,7 @@ $.getJSON('favs.json', function (data) {
 		user = data.user;
 		
 		shtml = '<div class="tweet_info" id="tweet_info_' + data.id + '">';
-		shtml += '<h class="name">' + data.user.screen_name + '</h>';
+		shtml += '<h class="name"><b>' + data.user.screen_name + '</b></h>';
 		shtml += '<p class="tweet">' + add_link(data.text) + '</p>';
 			
 		if (media != null) {
@@ -42,12 +42,12 @@ $.getJSON('favs.json', function (data) {
 			shtml += '<img class="image" src=' + media[0].media_url + ' alt=media_image><br>';
 		}
 		
-		shtml += '<h>About the User</h>';
-		shtml += '<p>Name: ' + user.name + '</p>';
-		shtml += '<p>Location: ' + user.location + '</p>';
-		shtml += '<p>Description: ' + user.description + '</p>';
+		shtml += '</br><h>About the User</h>';
+		shtml += '<p><b>Name:</b> ' + user.name + '</p>';
+		shtml += '<p><b>Location:</b> ' + user.location + '</p>';
+		shtml += '<p><b>Description:</b> ' + user.description + '</p>';
 		
-		shtml += '<p>Link: <a href="' + user.url + '" target="_blank">Link</a></p>';
+		shtml += '<p><b>Link:</b> <a href="' + user.url + '" target="_blank">Link</a></p>';
 		
 		shtml += '</div>';
 
