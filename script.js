@@ -12,14 +12,43 @@ $.getJSON('favs.json', function (data) {
 			$('#landscape_info').append(shtml);
 			$('.tweet_info').hide();
 			
-			
-			
 		})
-		create_click_events();
+		create_tap_events();
+		create_swipe_delete_event();
+		create_swipe_events();
     });
     
-    function create_click_events() {
-		$('.list_item').click(function() {
+    function create_swipe_delete_event() {
+		$('.list_item').bind('swipe', function() {
+			var response = window.confirm("Do you want to remove this from the list?");
+			if (response) {
+				var id = this.id;
+				$('.user_block#' + this.id).remove();
+				$('#tweet_info_' + this.id).remove();
+				$('.list_item#' + this.id).remove();
+			}
+		});
+		$('.user_block').bind('swipe', function() {
+			var response = window.confirm("Do you want to remove this from the list?");
+			if (response) {
+				var id = this.id;
+				$('.user_block#' + this.id).remove();
+				$('#tweet_info_' + this.id).remove();
+				$('.list_item#' + this.id).remove();
+			}
+		});
+	}
+	
+	// swipe events
+    function create_swipe_events() {		
+		// if they swipe the user info page to the left, it will close it
+		$('.tweet_info').bind("swipeleft", function() {
+			$(".tweet_info").hide();
+		});
+	}
+    
+    function create_tap_events() {
+		$('.list_item').bind('tap', function() {
 			
 			$(".tweet_info").hide();
 			$('#tweet_info_' + this.id).show();
@@ -74,7 +103,7 @@ $.getJSON('favs.json', function (data) {
 		shtml = '';
 		
 		// Create div block
-		shtml += '<div class="user_block">'
+		shtml += '<div class="user_block" id="' + data.id + '">'
 		
 		// Create profile picture
 		shtml += '<img class=profile_pic_portrait src="' + user.profile_image_url + '" alt="picture of ' + user.screen_name + '"></img>';
