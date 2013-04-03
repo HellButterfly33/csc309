@@ -5,7 +5,7 @@
 @media all and (max-width: 640px) 
 	{
 		.my-breakpoint .ui-block-a {
-			width: 100%;
+			width: 50%;
 		}
 		.my-breakpoint .ui-block-b {
 			visibility: hidden;
@@ -25,7 +25,7 @@
 	
 	.text {
 		white-space:nowrap;
-		width:40em;
+		width:80%;
 		overflow:hidden;
 		text-overflow:ellipsis;
 		margin-left: 4em;
@@ -46,6 +46,7 @@
 	.user_block{
 		border-style: solid;
 		border-width: 1px;
+		width: 90%;
 	}
 	
 	.profile_pic_portrait{
@@ -56,6 +57,7 @@
 	.user_info{
 		position: relative;
 		top: 5px;
+		width: 100%;
 		
 	}
 	
@@ -108,6 +110,7 @@
 		margin-top: 1em;
 		border-style: solid;
 		border-width: 1px;
+		width: 90%;
 	}
 	
 	.name_landscape{
