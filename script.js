@@ -18,10 +18,15 @@ $.getJSON('favs.json', function (data) {
 		create_swipe_events();
     });
     
+    /* Create a swipe delete event. If the user swipes a tweet, they have the
+    * option to delete the tweet.
+    */
     function create_swipe_delete_event() {
 		$('.list_item').bind('swipe', function() {
+			// Ask a confirmation before deleting.
 			var response = window.confirm("Do you want to remove this from the list?");
 			if (response) {
+				// if yes, delete
 				var id = this.id;
 				$('.user_block#' + this.id).remove();
 				$('#tweet_info_' + this.id).remove();
@@ -29,9 +34,11 @@ $.getJSON('favs.json', function (data) {
 			}
 		});
 		$('.user_block').bind('swipe', function() {
+			// Ask a confirmation before deleting.
 			var response = window.confirm("Do you want to remove this from the list?");
 			if (response) {
 				var id = this.id;
+				// if yes, delete
 				$('.user_block#' + this.id).remove();
 				$('#tweet_info_' + this.id).remove();
 				$('.list_item#' + this.id).remove();
@@ -39,7 +46,8 @@ $.getJSON('favs.json', function (data) {
 		});
 	}
 	
-	// swipe events
+	/* Create the swipe event for hiding tweet info box
+	*/
     function create_swipe_events() {		
 		// if they swipe the user info page to the left, it will close it
 		$('.tweet_info').bind("swipeleft", function() {
@@ -47,14 +55,18 @@ $.getJSON('favs.json', function (data) {
 		});
 	}
     
+    /* Create tab event. If user taps on a tweet, open the tweet info box.
+    */
     function create_tap_events() {
 		$('.list_item').bind('tap', function() {
-			
+			// show the tweet info box.
 			$(".tweet_info").hide();
 			$('#tweet_info_' + this.id).show();
 		});
 	}
     
+    /* Create the landscape view
+    */
     function create_landscape_view(data) {
 		var shtml, media, user;
 		add_to_list(data);
@@ -62,8 +74,11 @@ $.getJSON('favs.json', function (data) {
 		media = data.entities.media;
 		user = data.user;
 		
+		// Show the screen name, and the tweet
 		shtml = '<div class="tweet_info" id="tweet_info_' + data.id + '">';
 		shtml += '<h class="name"><b>' + data.user.screen_name + '</b></h>';
+		// if there are links in the tweet, add the link and make it open
+		// in a new window
 		shtml += '<p class="tweet">' + add_link(data.text) + '</p>';
 			
 		if (media != null) {
@@ -71,6 +86,7 @@ $.getJSON('favs.json', function (data) {
 			shtml += '<img class="image" src=' + media[0].media_url + ' alt=media_image><br>';
 		}
 		
+		// Show the user's real name, location, and description.
 		shtml += '</br><h>About the User</h>';
 		shtml += '<p><b>Name:</b> ' + user.name + '</p>';
 		shtml += '<p><b>Location:</b> ' + user.location + '</p>';
@@ -83,11 +99,15 @@ $.getJSON('favs.json', function (data) {
 		return shtml;
 	}
 	
+	/* Add a new tweet to the list. This is not the full tweet. It is only
+	* a condensed version of the full tweet up to a maximum character.
+	*/
 	function add_to_list(data) {
 		var shtml, user;
 		
 		user = data.user;
 		
+		// Show the profile picture, screen name, and tweet(up to a maximum number of characters)
 		shtml = '<li class="list_item" id="' + data.id + '">';
 		shtml += '<img class=profile_pic_landscape src="' + user.profile_image_url + '" alt="picture of ' + user.screen_name + '"></img>';
 		shtml += '<div class="name_landscape">' + user.screen_name + '</div>';
@@ -96,6 +116,8 @@ $.getJSON('favs.json', function (data) {
 		$('#tweet-list').append(shtml);
 	}
     
+    /* Create the portrait view
+    */
     function create_portrait_view(data) {
 		var shtml, user;
 		
@@ -126,6 +148,8 @@ $.getJSON('favs.json', function (data) {
 		return shtml;
 	}
 	
+	/* Create the user info block.
+	*/
 	function create_user_info_page(user) {
 		var shtml = '';
 		
