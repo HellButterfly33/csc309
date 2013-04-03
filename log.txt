@@ -1,0 +1,187 @@
+commit c8432714ba040c82f374f28692a08e9dd32a1dd2
+Merge: 8f314c4 d54e44b
+Author: jamtongol <jamtongol@gmail.com>
+Date:   Tue Apr 2 22:26:51 2013 -0400
+
+    Merge branch 'master' of https://github.com/HellButterfly33/csc309
+
+commit d54e44bb773f25c6f017623e0d13998e6233c0d8
+Author: HellButterfly33 <thomasleong3@gmail.com>
+Date:   Tue Apr 2 23:26:34 2013 -0300
+
+    Update script.js
+    
+    Added the last bits of comment
+
+commit 8f314c44ee35270967e4c915bb648259cd178836
+Merge: fdc1957 884ab68
+Author: jamtongol <jamtongol@gmail.com>
+Date:   Tue Apr 2 22:26:13 2013 -0400
+
+    Merge branch 'master' of https://github.com/HellButterfly33/csc309
+
+commit fdc19579dccf8a48d47236d678609fcb7432c555
+Author: jamtongol <jamtongol@gmail.com>
+Date:   Tue Apr 2 22:24:58 2013 -0400
+
+    added README.txt
+
+commit 884ab68d39a1395c5730a43324667d49e5e64796
+Author: HellButterfly33 <thomasleong3@gmail.com>
+Date:   Tue Apr 2 23:24:23 2013 -0300
+
+    Update script.js
+    
+    Added more comments
+
+commit 1d89a2fdc77a7f323750a41ddcc0eec92054b699
+Author: HellButterfly33 <thomasleong3@gmail.com>
+Date:   Tue Apr 2 23:18:59 2013 -0300
+
+    Update script.js
+    
+    Added some comments
+
+commit c7e2301fbf5f9794505f6e12fadb1abcb35d0d39
+Merge: a179e9b 70963d7
+Author: Yanesh Prithipaul <yanesh1@gmail.com>
+Date:   Tue Apr 2 22:11:49 2013 -0400
+
+    Merge branch 'master' of https://github.com/HellButterfly33/csc309
+
+commit a179e9b30b1d5334fa928cd7dfd322fedbd61976
+Author: Yanesh Prithipaul <yanesh1@gmail.com>
+Date:   Tue Apr 2 22:08:38 2013 -0400
+
+    Readme
+
+commit 70963d73c55ee2ecd771faf1c80186e8552c2b77
+Author: HellButterfly33 <thomasleong3@gmail.com>
+Date:   Tue Apr 2 23:06:39 2013 -0300
+
+    Update script.js
+    
+    Added swipeleft on info tweet block to hide the info tweet block if they swipe left on it.
+
+commit 3240d98203175f1365c158eb5afa4aca80439b52
+Author: jamtongol <jamtongol@gmail.com>
+Date:   Tue Apr 2 21:58:55 2013 -0400
+
+    fixed a bug to the delete function
+
+commit 368efdd23fe90fa48419108a2cd4fc3154724dc1
+Merge: dc28343 6f4efbd
+Author: jamtongol <jamtongol@gmail.com>
+Date:   Tue Apr 2 21:53:16 2013 -0400
+
+    Merge branch 'master' of https://github.com/HellButterfly33/csc309
+
+commit dc28343fb4c1bbff12ad2ffb23b8c53e94a85ef0
+Author: jamtongol <jamtongol@gmail.com>
+Date:   Tue Apr 2 21:53:09 2013 -0400
+
+    added a swipe to delete functionality
+
+commit 6f4efbd010f31cee7d938a91e8ce0aa2498c25ea
+Author: Yanesh Prithipaul <yanesh1@gmail.com>
+Date:   Tue Apr 2 21:44:47 2013 -0400
+
+    Dynamic text resize with window resize
+
+commit c71bd66fb6ab8ffdfa42bc16cd382e3a5ab1fe33
+Author: Yanesh Prithipaul <yanesh1@gmail.com>
+Date:   Tue Apr 2 20:56:12 2013 -0400
+
+    Fixed landscape name margin
+
+commit 5d83268572e6373bbdee9482cf7f5c27381983bb
+Author: Yanesh Prithipaul <yanesh1@gmail.com>
+Date:   Tue Apr 2 20:51:38 2013 -0400
+
+    Updated CSS for landscape
+
+commit e6c4ccea6f3f966fa7804ac11759a9022d8e3088
+Author: Yanesh Prithipaul <yanesh1@gmail.com>
+Date:   Tue Apr 2 20:12:17 2013 -0400
+
+    Updated CSS for portrait
+
+commit 0c2818becb9431ad9971511774b6cc051ca13e98
+Author: HellButterfly33 <thomasleong3@gmail.com>
+Date:   Mon Apr 1 02:30:43 2013 -0300
+
+    Update script.js
+    
+    Fixed source: link
+    part
+
+commit 064892d86cfcf62fc0b1e08dbbb1f4e79cf5b9a7
+Author: jamtongol <jamtongol@gmail.com>
+Date:   Mon Apr 1 01:06:04 2013 -0400
+
+    fixed a forgotten add_link() call
+
+commit 834fac9ee379d965806d30ee17494c15f11b471b
+Author: jamtongol <jamtongol@gmail.com>
+Date:   Mon Apr 1 00:48:26 2013 -0400
+
+    added addquote() function from last commit
+
+commit 78e16460b1167e0741211557f143748ec3576fbc
+Merge: 541bdc4 8f6aa51
+Author: jamtongol <jamtongol@gmail.com>
+Date:   Sun Mar 31 22:50:29 2013 -0400
+
+    transfered the javascript to script.js, transfered the css to style.css, finished the landscape view
+
+commit 541bdc40f8f8d28c05609baf66b69320188c29ae
+Author: jamtongol <jamtongol@gmail.com>
+Date:   Sun Mar 31 22:48:48 2013 -0400
+
+    transfered the javascript to script.js, transfered the css to style.css, finished the landscape view
+
+commit 8f6aa515708bb0d2df4b4eead628512836107439
+Author: HellButterfly33 <thomasleong3@gmail.com>
+Date:   Sun Mar 31 19:34:04 2013 -0300
+
+    Update index.html
+    
+    Added add_link
+    All external links are opened in a different window
+
+commit 7f1f855351a79f72bfc8de5b036003540fdb0a7a
+Author: jamtongol <jamtongol@gmail.com>
+Date:   Sun Mar 31 13:12:01 2013 -0400
+
+    added sketches of templates. Implemented the portrait view
+
+commit 55078a8f5ff908f3be6048b37329416eed4ea393
+Author: jamtongol <jamtongol@gmail.com>
+Date:   Sat Mar 30 21:05:13 2013 -0400
+
+    fixed some bugs. turned popup buttons into actual popup buttons
+
+commit 6f6fe53277a87217b74d530791ea063b073563d6
+Author: jamtongol <jamtongol@gmail.com>
+Date:   Sat Mar 30 12:24:11 2013 -0400
+
+    index.html displays all relevant info from the json file. User info can be expanded in a popup
+
+commit b272c99029c6d6ea5019108076d70984b47736e1
+Merge: 962646f c129f2b
+Author: Thomas <thomasleong3@gmail.com>
+Date:   Fri Mar 29 21:48:20 2013 -0400
+
+    Merge branch 'master' of https://github.com/HellButterfly33/csc309
+
+commit 962646f2da7d5c38d776f68d5e84648abdf73c0d
+Author: Thomas <thomasleong3@gmail.com>
+Date:   Fri Mar 29 21:45:44 2013 -0400
+
+    Added base files
+
+commit c129f2b45f371d744266f006d6678c7d6e182c14
+Author: HellButterfly33 <thomasleong3@gmail.com>
+Date:   Wed Mar 27 18:17:31 2013 -0700
+
+    Initial commit
