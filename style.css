@@ -2,7 +2,7 @@
 	font-family: "Lato", sans-serif;
 }
 
-@media all and (max-width: 50em) 
+@media all and (max-width: 640px) 
 	{
 		.my-breakpoint .ui-block-a {
 			width: 100%;
@@ -11,7 +11,7 @@
 			visibility: hidden;
 		}
 	}
-	@media all and (min-width: 50em) 
+	@media all and (min-width: 641px) 
 	{
 		.my-breakpoint .ui-block-a {
 			visibility: hidden;
