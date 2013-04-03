@@ -1,3 +1,7 @@
+.ui-body-c, .ui-body-c input, .ui-body-c select, .ui-body-c textarea, .ui-body-c button{
+	font-family: "Lato", sans-serif;
+}
+
 @media all and (max-width: 50em) 
 	{
 		.my-breakpoint .ui-block-a {
@@ -14,6 +18,8 @@
 		}
 		.my-breakpoint .ui-block-b {
 			width: 100%;
+			position: absolute;
+			top: 4em;
 		}
 	}
 	
@@ -22,9 +28,68 @@
 		width:40em;
 		overflow:hidden;
 		text-overflow:ellipsis;
+		margin-left: 4em;
+		position: relative;
+		top: -10px;
 	}
 	
 	.list_item
 	{
 		cursor:pointer;
+		float: top;
 	}
+	
+	.ui-link{
+		margin-left: 5px;
+	}
+	
+	.user_block{
+		border-style: solid;
+		border-width: 1px;
+	}
+	
+	.profile_pic_portrait{
+		float: left;
+		padding: 5px;
+	}
+	
+	.user_info{
+		position: relative;
+		top: 5px;
+		
+	}
+	
+	.header{
+		width: 100%;
+		background: green;
+	}
+	
+	.ui-popup{
+		padding: 10px;
+	}
+	
+	.ui-btn{
+		width: 40%;
+		position: relative;
+		left: 35%;
+	}
+	
+	.user_page{
+		padding: 10px;
+	}
+	
+	.profile_pic {
+		height: 100px;
+		width: 100px;
+		float: left;
+		padding: 10px;
+	}
+	
+	.mybreakpoint .ui-grid-a{
+		float: left;
+	}
+	.ui-block-c{
+		float: left;
+	}
+	
+	

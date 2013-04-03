@@ -73,15 +73,19 @@ $.getJSON('favs.json', function (data) {
 		user = data.user;
 		shtml = '';
 		
+		// Create div block
+		shtml += '<div class="user_block">'
+		
 		// Create profile picture
 		shtml += '<img class=profile_pic_portrait src="' + user.profile_image_url + '" alt="picture of ' + user.screen_name + '"></img>';
 		
 		// Create user info link
-		shtml += '<a href="#user_info_' + user.id + '">' + user.screen_name + '</a><br>';
+		shtml += '<div class="user_info"><a id="user_link" href="#user_info_' + user.id + '">' + user.screen_name + '</a></div><br>';
 		
 		// Create compressed tweet
 		shtml += "<a href='#popup_" + data.id + "' data-rel='popup'><div class='text'>" + data.text +"</div></a><br>";
 		
+		shtml += '</div>'
 		// Create tweet info popup
 		shtml += create_tweet_popup(data);
 		
@@ -99,14 +103,14 @@ $.getJSON('favs.json', function (data) {
 		// Start the user page;
 		shtml += '<div data-role="page" id="user_info_' + user.id + '">';
 		
-		shtml += '<img class=profile_pic src="' + user.profile_image_url + '" alt="picture of ' + user.screen_name + '"></img>';
-		shtml += '<div class="screen_name">' + user.screen_name + '</div>';
+		shtml += '<div class="user_page"><img class=profile_pic src="' + user.profile_image_url + '" alt="picture of ' + user.screen_name + '"></img>';
+		shtml += '<div class="screen_name"><b>Screen Name:</b> ' + user.screen_name + '</div>';
 		
-		shtml += '<div class="name">name: ' + user.name + '</div>';
-		shtml += '<div class="location">location: ' + user.location + '</div>';
-		shtml += '<div class-"description">description: ' + user.description + '</div>';
-		shtml += '<a class="link" target="_blank" href=' + user.url + '>link</a>';
-		shtml += '<a href="#Main_Container" data-role="button">Go to Main Page</a></div>';
+		shtml += '<div class="name"><b>Name:</b> ' + user.name + '</div>';
+		shtml += '<div class="location"><b>Location:</b> ' + user.location + '</div>';
+		shtml += '<div class-"description"><b>Description:</b> ' + user.description + '</div>';
+		shtml += '<a class="link" target="_blank" href=' + user.url + '><b>Link</b></a>';
+		shtml += '<a href="#Main_Container" data-role="button">Go to Main Page</a></div></div>';
 		
 		$(document.body).append(shtml);
 	}
