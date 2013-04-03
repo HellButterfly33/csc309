@@ -15,6 +15,7 @@ $.getJSON('favs.json', function (data) {
 		})
 		create_tap_events();
 		create_swipe_delete_event();
+		create_swipe_events();
     });
     
     function create_swipe_delete_event() {
@@ -35,6 +36,14 @@ $.getJSON('favs.json', function (data) {
 				$('#tweet_info_' + this.id).remove();
 				$('.list_item#' + this.id).remove();
 			}
+		});
+	}
+	
+	// swipe events
+    function create_swipe_events() {		
+		// if they swipe the user info page to the left, it will close it
+		$('.tweet_info').bind("swipeleft", function() {
+			$(".tweet_info").hide();
 		});
 	}
     
