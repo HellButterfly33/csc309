@@ -12,8 +12,6 @@ $.getJSON('favs.json', function (data) {
 			$('#landscape_info').append(shtml);
 			$('.tweet_info').hide();
 			
-			
-			
 		})
 		create_tap_events();
 		create_swipe_delete_event();
@@ -25,6 +23,7 @@ $.getJSON('favs.json', function (data) {
 			if (response) {
 				var id = this.id;
 				$('.user_block#' + this.id).remove();
+				$('#tweet_info_' + this.id).remove();
 				$('.list_item#' + this.id).remove();
 			}
 		});
@@ -33,6 +32,7 @@ $.getJSON('favs.json', function (data) {
 			if (response) {
 				var id = this.id;
 				$('.user_block#' + this.id).remove();
+				$('#tweet_info_' + this.id).remove();
 				$('.list_item#' + this.id).remove();
 			}
 		});
